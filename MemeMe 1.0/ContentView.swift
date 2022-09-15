@@ -73,9 +73,9 @@ struct ContentView: View {
         
     }
     func save() {
-        meme.memedImage = MemeView(meme: $meme).generateMemedImage()
-        UIImageWriteToSavedPhotosAlbum(meme.memedImage, nil, nil, nil)
-        //showActivitySheet = true
+        meme.memedImage = ContentView().generateMemedImage()
+        //UIImageWriteToSavedPhotosAlbum(meme.memedImage, nil, nil, nil)
+        showActivitySheet = true
         
     }
     

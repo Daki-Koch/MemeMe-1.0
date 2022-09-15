@@ -14,17 +14,11 @@ struct ContentView: View {
     @State private var showActivitySheet = false
     @State private var showLibrarySheet = false
     @State private var showCameraSheet = false
-    @State var meme = Meme(topText: "TOP", botText: "BOTTOM", originalImage: UIImage(), memedImage: UIImage())
-    //@State private var image = UIImage()
-    //@State private var memedImage = UIImage()
-
-    //@State private var topText = "TOP"
-    //@State private var botText = "BOTTOM"
     
+    @State var meme = Meme(topText: "TOP", botText: "BOTTOM", originalImage: UIImage(), memedImage: UIImage())
     
     var body: some View {
         NavigationView{
-            
             MemeView(meme: $meme).toolbar {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     Button("Cancel", action:{
@@ -71,15 +65,19 @@ struct ContentView: View {
             }
         }
         
-    }
-    func save() {
-        meme.memedImage = ContentView().generateMemedImage()
-        //UIImageWriteToSavedPhotosAlbum(meme.memedImage, nil, nil, nil)
-        showActivitySheet = true
         
     }
     
-
+    
+    func save() {
+        
+        let image = ContentView().generateMemedImage()
+        //meme.memedImage = ContentView().drawingGroup().generateMemedImage()
+        //meme.memedImage = MemeView(meme: $meme).body.generateMemedImage()
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        //showActivitySheet = true
+        
+    }
     
     
 }

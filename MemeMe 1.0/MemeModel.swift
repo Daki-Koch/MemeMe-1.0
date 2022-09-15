@@ -10,9 +10,10 @@ import Foundation
 import SwiftUI
 
 struct MemeView: View{
+    
+
     @Binding var meme: Meme
     @State var textPlaceholder = ""
-    
     var body: some View{
         ZStack{
             Image(uiImage: meme.originalImage).resizable().scaledToFit()
@@ -26,9 +27,9 @@ struct MemeView: View{
                     if meme.topText == ""{
                         meme.topText = "TOP"
                     }
-                        
-                }).multilineTextAlignment(.center).textInputAutocapitalization(.characters).foregroundColor(.white).font(.custom("HelveticaNeue-CondensedBlack", size:  40)).shadow(color: .black, radius: 1).offset(y: CGFloat(SafeAreaRegions.keyboard.rawValue)).padding()
                     
+                }).multilineTextAlignment(.center).textInputAutocapitalization(.characters).foregroundColor(.white).font(.custom("HelveticaNeue-CondensedBlack", size:  40)).shadow(color: .black, radius: 1).offset(y: CGFloat(SafeAreaRegions.keyboard.rawValue)).padding()
+                
                 Spacer()
                 TextField(self.$textPlaceholder.wrappedValue, text: $meme.botText, onEditingChanged: { editing in
                     if editing {
@@ -38,15 +39,14 @@ struct MemeView: View{
                     if meme.botText == ""{
                         meme.botText = "BOTTOM"
                     }
-                        
+                    
                 }).multilineTextAlignment(.center).textInputAutocapitalization(.characters).foregroundColor(.white).font(.custom("HelveticaNeue-CondensedBlack", size:  40)).shadow(color: .black, radius: 1).offset(y: CGFloat(SafeAreaRegions.keyboard.rawValue)).padding()
                 
             }
             
         }
     }
-    
-    
+
     
 }
 
@@ -59,10 +59,10 @@ struct Meme {
 
 extension View{
     func generateMemedImage() -> UIImage{
-
-
-
-        let controller = UIHostingController(rootView: self.ignoresSafeArea(.all))
+        
+        
+        
+        let controller = UIHostingController(rootView: self.ignoresSafeArea(.container))
         
         let view = controller.view
         let targetSize = controller.view.intrinsicContentSize
